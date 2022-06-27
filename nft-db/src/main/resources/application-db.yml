@@ -1,0 +1,39 @@
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/nft?allowPublicKeyRetrieval=true&serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+    username: root
+    password: lzh8648179
+    driver-class-name: com.mysql.cj.jdbc.Driver # 注意：如果你的mysql的jar包引入的是8.0以上版本，则驱动为：com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 5 # 初始化时建立物理连接的个数
+      min-idle: 5 # 最小连接池数量
+      max-active: 100 # 最大连接池数量
+      max-wait: 60000 # 获取连接时最大等待时间
+      stat-view-servlet:
+        login-username: admin # 配置监控页面访问登录名称
+        login-password: admin # 配置监控页面访问密码
+      filter:
+        stat:
+          log-slow-sql: true # 是否开启慢sql查询监控
+          slow-sql-millis: 1 # 慢SQL执行时间
+      pool-prepared-statements: true
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      max-open-prepared-statements: 20
+      validation-query: SELECT 1 FROM DUAL
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true # 开启驼峰法则
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 放开则开启SQL打印（就是每次SQL操作数据库都会在控制台打印出来，建议使用熟练以后关闭，不然日志很多）
+  type-aliases-package: com.mixchain.nft.db.entity # 实体类包路径
+  mapper-locations: classpath*:mapper/*Mapper.xml # 存放sql语句的xml文件目录
+#  global-config:
+#    db-config:
+#      logic-delete-field: delFlag # 全局逻辑删除的实体字段名（这里填表字段名好像也可以）
+#      logic-delete-value: 1 # 逻辑已删除值（为1，表示已删除）
+#      logic-not-delete-value: 0 # 逻辑未删除值(默认为0, 表示未删除)

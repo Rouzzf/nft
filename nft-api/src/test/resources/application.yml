@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: db,core
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+server:
+  port: 8080
+
+# 分页插件PageHelper配置
+pagehelper:
+  helper-dialect: mysql
+  pageSizeZero: true
+  params: count=countSql
+  reasonable: true
+  support-methods-arguments: true
