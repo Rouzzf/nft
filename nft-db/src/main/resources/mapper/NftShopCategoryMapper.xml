@@ -2,4 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mixchain.nft.db.mapper.NftShopCategoryMapper">
 
+    <select id="getExternalByContract" resultType="com.mixchain.nft.db.dto.NftExternalDto">
+        select s.`name`, s.`isv`
+        from nft_shop_category as c
+                 left join nft_shop_issue as s on c.`issueid` = s.`id`
+        where c.`contract` = #{contract} limit 1
+    </select>
 </mapper>

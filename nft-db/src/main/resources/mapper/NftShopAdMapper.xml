@@ -2,4 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mixchain.nft.db.mapper.NftShopAdMapper">
 
+
+    <select id="getAds" resultType="com.mixchain.nft.db.dto.AdsDto">
+        select `id`, `title`, `avatar`, `urltype`, `url`, `adtype`, `paramid`
+        from nft_shop_ad
+        where `status` = 'normal'
+        order by `weigh` desc
+    </select>
 </mapper>

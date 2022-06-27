@@ -2,10 +2,11 @@ package com.mixchain.nft.db.service;
 
 import com.mixchain.nft.db.entity.NftShopAd;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mixchain.nft.db.vo.ShopIndexVo;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author Rouzzf
@@ -13,4 +14,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface NftShopAdService extends IService<NftShopAd> {
 
+    /**
+     * 首页
+     */
+    ShopIndexVo index();
 }

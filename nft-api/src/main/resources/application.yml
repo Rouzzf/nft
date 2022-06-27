@@ -1,11 +1,28 @@
 spring:
   profiles:
     active: db,core
+  servlet:
+    multipart:
+      max-file-size: 40MB
+      max-request-size: 100MB
+    messages:
+      encoding: UTF-8
+    mvc:
+      async:
+        request-timeout: 20000
   mvc:
     pathmatch:
       matching-strategy: ant-path-matcher
 server:
   port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 800
+    min-spare-threads: 100
+    accept-count: 1000
+    max-connections: 8000
+  servlet:
+    context-path: /api
 
 # 分页插件PageHelper配置
 pagehelper:

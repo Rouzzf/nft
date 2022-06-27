@@ -2,4 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mixchain.nft.db.mapper.NftArticleMapper">
 
+    <select id="articleList" resultType="com.mixchain.nft.db.dto.ArticleDto">
+        select `id`, `title`, from_unixtime(`createtime`)
+        from nft_article
+        where `type` = #{type}
+          and `langid` = #{langid}
+        order by `displayorder` desc, `createtime` desc limit #{per}, #{pageSize}
+    </select>
 </mapper>

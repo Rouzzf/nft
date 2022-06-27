@@ -37,3 +37,6 @@ mybatis-plus:
 #      logic-delete-field: delFlag # 全局逻辑删除的实体字段名（这里填表字段名好像也可以）
 #      logic-delete-value: 1 # 逻辑已删除值（为1，表示已删除）
 #      logic-not-delete-value: 0 # 逻辑未删除值(默认为0, 表示未删除)
+
+cdn:
+  url: https://oss.ipoo.co

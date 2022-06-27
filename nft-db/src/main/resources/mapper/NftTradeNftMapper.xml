@@ -2,4 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mixchain.nft.db.mapper.NftTradeNftMapper">
 
+    <select id="nftList" resultType="com.mixchain.nft.db.dto.NftListDto">
+        select `id`,`unitprice`,`avatar`,`title`,`goodsno`,`type`,`suename`,`isv`,`contract`
+        from nft_trade_nft where `status` = 1
+        <if test="contract!=null">
+            and `contract` = #{contract}
+        </if>
+        order by
+        <if test="sort==1">
+            `unitprice`
+        </if>
+        <if test="sort==2">
+            `salenum`
+        </if>
+        <if test="order==1">
+            asc,
+        </if>
+        <if test="order==2">
+            desc,
+        </if>
+        `ishot` desc,`createtime` desc
+    </select>
 </mapper>
