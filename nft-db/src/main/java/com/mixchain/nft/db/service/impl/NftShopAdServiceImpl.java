@@ -47,7 +47,7 @@ public class NftShopAdServiceImpl extends ServiceImpl<NftShopAdMapper, NftShopAd
                 if (ad.getParamid() > 0) {
                     NftDto nft = nftShopNftMapper.getNft(ad.getParamid());
                     if (nft != null) {
-                        nft.setAvatar(cdnUrl + nft.getAvatar());
+                        nft.setAvatar(nft.getAvatar().contains("http") ? nft.getAvatar() : cdnUrl + nft.getAvatar());
                         if (nft.getStatus() == 0) {
                             // 预售
                             if (nft.getStarttime() > endTIme) {
@@ -78,7 +78,7 @@ public class NftShopAdServiceImpl extends ServiceImpl<NftShopAdMapper, NftShopAd
 
         salelists.forEach(salelist -> {
             if (!salelist.getAvatar().isEmpty()) {
-                salelist.setAvatar(cdnUrl + salelist.getAvatar());
+                salelist.setAvatar(salelist.getAvatar().contains("http") ? salelist.getAvatar() : cdnUrl + salelist.getAvatar());
 
                 // 即将开始
                 if (salelist.getStarttime() > startTime && salelist.getStatus() == 0) {

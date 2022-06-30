@@ -1,5 +1,6 @@
 package com.mixchain.nft.api.controller;
 
+import com.mixchain.nft.api.aspect.OperationLog;
 import com.mixchain.nft.core.common.ResponseEntity;
 import com.mixchain.nft.core.constant.NftConstant;
 import com.mixchain.nft.db.service.NftShopAdService;
@@ -26,9 +27,10 @@ public class ShopController {
      * 首页数据
      */
     @GetMapping("index")
+    @OperationLog("首页数据")
     public ResponseEntity index() {
         try {
-            return ResponseEntity.ok(NftConstant.successMsg, nftShopAdService.index());
+            return ResponseEntity.ok(nftShopAdService.index());
         } catch (Exception e) {
             log.error("首页数据 接口请求异常:{}", e);
             return ResponseEntity.error(403, "请求失败", "");

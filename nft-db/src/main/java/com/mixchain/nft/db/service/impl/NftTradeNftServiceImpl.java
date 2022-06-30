@@ -39,10 +39,9 @@ public class NftTradeNftServiceImpl extends ServiceImpl<NftTradeNftMapper, NftTr
         }
         List<NftListDto> nftListDto = baseMapper.nftList(per, pageSize, contract, sort, order);
         nftListDto.forEach(listDto -> {
-                    listDto.setAvatar(cdnUrl + listDto.getAvatar());
+                    listDto.setAvatar(listDto.getAvatar().contains("http") ? listDto.getAvatar() : cdnUrl + listDto.getAvatar());
                     // 外部提入是否收录
                     if (listDto.getType() == 2) {
-                        System.out.println(listDto);
                         NftExternalDto nftExternalDto = nftShopCategoryMapper.getExternalByContract(listDto.getContract());
                         if (nftExternalDto != null) {
                             listDto.setSuename(nftExternalDto.getName());

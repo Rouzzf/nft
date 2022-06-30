@@ -1,5 +1,6 @@
 package com.mixchain.nft.api.controller;
 
+import com.mixchain.nft.api.aspect.OperationLog;
 import com.mixchain.nft.core.common.ResponseEntity;
 import com.mixchain.nft.core.constant.NftConstant;
 import com.mixchain.nft.db.service.NftArticleService;
@@ -28,13 +29,14 @@ public class IndexController {
      * @return
      */
     @GetMapping("/articlelist")
+    @OperationLog("文章列表")
     public ResponseEntity articleList(@RequestParam(required = false, value = "page") Integer page, @RequestParam(required = false, value = "pageSize") Integer pageSize,
                                       @RequestParam(required = false, value = "type") Integer type, @RequestParam(value = "langid") Integer langid) {
         try {
             page = (page != null) && page > 0 ? page : 1;
             pageSize = (pageSize != null) && pageSize > 0 ? pageSize : 10;
             Integer per = (page - 1) * pageSize;
-            return ResponseEntity.ok(NftConstant.successMsg, nftArticleService.articleList(per, pageSize, type, langid));
+            return ResponseEntity.ok(nftArticleService.articleList(per, pageSize, type, langid));
         } catch (Exception e) {
             log.error("文章列表 接口请求异常:{}", e);
             return ResponseEntity.error(403, "请求失败", "");

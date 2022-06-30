@@ -17,12 +17,28 @@ public class ResponseEntity {
         return new ResponseEntity(NftConstant.successCode, msg, String.valueOf(System.currentTimeMillis() / 1000), data);
     }
 
+    public static ResponseEntity ok(Object data) {
+        return new ResponseEntity(NftConstant.successCode, NftConstant.successMsg, String.valueOf(System.currentTimeMillis() / 1000), data);
+    }
+
     public static ResponseEntity ok(Integer code, String msg, Object data) {
         return new ResponseEntity(code, msg, String.valueOf(System.currentTimeMillis() / 1000), data);
     }
 
     public static ResponseEntity error(Integer code, String msg, Object data) {
         return new ResponseEntity(code, msg, String.valueOf(System.currentTimeMillis() / 1000), data);
+    }
+
+    public static ResponseEntity error(String msg, Object data) {
+        return new ResponseEntity(NftConstant.errorCode, msg, String.valueOf(System.currentTimeMillis() / 1000), data);
+    }
+
+    public static ResponseEntity error(String msg) {
+        return new ResponseEntity(NftConstant.errorCode, msg, String.valueOf(System.currentTimeMillis() / 1000), null);
+    }
+
+    public static ResponseEntity error() {
+        return new ResponseEntity(NftConstant.errorCode, NftConstant.errorMsg, String.valueOf(System.currentTimeMillis() / 1000), null);
     }
 
     public ResponseEntity(Integer code, String msg, String time, Object data) {
